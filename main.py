@@ -5,20 +5,23 @@ class App:
     def __init__(self):
         self._running = True
         self._display_surf = None
-        self.size = self.weight, self.height = 640, 400
+        self._image_surf = None
  
     def on_init(self):
         pygame.init()
-        self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
+        self._display_surf = pygame.display.set_mode((350,350), pygame.HWSURFACE)
         self._running = True
+        self._image_surf = pygame.image.load("myimage.jpg").convert()
  
     def on_event(self, event):
-        if event.type == pygame.QUIT:
+        if event.type == QUIT:
             self._running = False
     def on_loop(self):
         pass
     def on_render(self):
-        pass
+        self._display_surf.blit(self._image_surf,(0,0))
+        pygame.display.flip()
+    
     def on_cleanup(self):
         pygame.quit()
  
